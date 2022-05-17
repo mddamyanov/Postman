@@ -153,13 +153,13 @@
 							"type": "basic",
 							"basic": [
 								{
-									"key": "password",
-									"value": "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",
+									"key": "username",
+									"value": "{{user}}",
 									"type": "string"
 								},
 								{
-									"key": "username",
-									"value": "mddamyanov",
+									"key": "password",
+									"value": "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",
 									"type": "string"
 								}
 							]
@@ -200,13 +200,13 @@
 							"type": "basic",
 							"basic": [
 								{
-									"key": "password",
-									"value": "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",
+									"key": "username",
+									"value": "{{user}}",
 									"type": "string"
 								},
 								{
-									"key": "username",
-									"value": "mddamyanov",
+									"key": "password",
+									"value": "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",
 									"type": "string"
 								}
 							]
@@ -252,8 +252,34 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Status code is 200\", function () {\r",
-									"    pm.response.to.have.status(200);\r",
+									"let body = pm.response.json();\r",
+									"\r",
+									"pm.test(\"HTTP status code\", function(){\r",
+									" pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"HTTP status\", function(){\r",
+									" pm.expect(pm.response.status).to.equal('OK');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check issue ID\", function(){\r",
+									"    pm.expect(body.id).to.be.greaterThan(1);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check issue number\", function(){\r",
+									"    pm.expect(body.number).to.be.greaterThan(0);\r",
+									"});\r",
+									"\r",
+									"pm.test (\"Check if title is eddited\", function(){\r",
+									"    pm.expect(body.title).to.contain('Edited');\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Check if first label is updated\", function(){\r",
+									"    pm.expect(body.labels[0].name).to.equal('bug');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check if second label is updated\", function(){\r",
+									"    pm.expect(body.labels[1].name).to.equal('importance: high');\r",
 									"});"
 								],
 								"type": "text/javascript"
@@ -271,7 +297,7 @@
 								},
 								{
 									"key": "username",
-									"value": "mddamyanov",
+									"value": "{{user}}",
 									"type": "string"
 								}
 							]
@@ -280,7 +306,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Updated issue\",\r\n    \"body\": \"This is update request example.\"\r\n}",
+							"raw": "{\r\n\"title\" : \"Edited bug (Issue for GitHub fom Postman)\",\r\n\"labels\" : [\"bug\", \"importance: high\"]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -288,7 +314,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://api.github.com/repos/{{user}}/{{repo}}/issues/6",
+							"raw": "https://api.github.com/repos/{{user}}/{{repo}}/issues/5",
 							"protocol": "https",
 							"host": [
 								"api",
@@ -300,7 +326,7 @@
 								"{{user}}",
 								"{{repo}}",
 								"issues",
-								"6"
+								"5"
 							]
 						}
 					},
