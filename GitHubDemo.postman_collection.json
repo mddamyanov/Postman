@@ -153,13 +153,13 @@
 							"type": "basic",
 							"basic": [
 								{
-									"key": "username",
-									"value": "{{user}}",
+									"key": "password",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "password",
-									"value": "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",
+									"key": "username",
+									"value": "{{user}}",
 									"type": "string"
 								}
 							]
@@ -200,13 +200,13 @@
 							"type": "basic",
 							"basic": [
 								{
-									"key": "username",
-									"value": "{{user}}",
+									"key": "password",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
-									"key": "password",
-									"value": "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",
+									"key": "username",
+									"value": "{{user}}",
 									"type": "string"
 								}
 							]
@@ -292,7 +292,7 @@
 							"basic": [
 								{
 									"key": "password",
-									"value": "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",
+									"value": "{{token}}",
 									"type": "string"
 								},
 								{
